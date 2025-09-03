@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Advanced Health Dashboard App</title>
+    <link rel="stylesheet" href="task5.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i> MyHealth
+            </div>
+            <div class="user-profile">
+                <span id="current-date"></span> <span class="user-greeting">Hello, User!</span>
+                <img src="https://via.placeholder.com/40" alt="User Avatar" class="avatar">
+                <button id="theme-switcher" class="theme-switcher" aria-label="Toggle light/dark theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <aside class="app-sidebar">
+            <nav>
+                <ul id="main-nav-list">
+                    <li class="active"><a href="#dashboard"><i class="fas fa-th-large"></i> Dashboard</a></li>
+                    <li><a href="#activity"><i class="fas fa-running"></i> Activity</a></li>
+                    <li><a href="#nutrition"><i class="fas fa-apple-alt"></i> Nutrition</a></li>
+                    <li><a href="#sleep"><i class="fas fa-moon"></i> Sleep & Mood</a></li>
+                    <li><a href="#weight"><i class="fas fa-weight"></i> Weight</a></li>
+                    <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="app-main" id="app-main-content">
+            <section id="dashboard" class="dashboard-section active-section">
+                <h2>Health Overview</h2>
+
+                <div class="metric-cards">
+                    <div class="card health-metric">
+                        <div class="icon-circle steps"><i class="fas fa-shoe-prints"></i></div>
+                        <h3>Steps Today</h3>
+                        <p id="steps-count">0</p>
+                        <span class="goal">Goal: 10,000 steps</span>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="steps-progress"></div>
+                        </div>
+                        <button class="add-button" data-type="steps">+100 Steps</button>
+                    </div>
+
+                    <div class="card health-metric">
+                        <div class="icon-circle water"><i class="fas fa-tint"></i></div>
+                        <h3>Water Intake</h3>
+                        <p id="water-intake">0.0 L</p>
+                        <span class="goal">Goal: 2.5 L</span>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="water-progress"></div>
+                        </div>
+                        <button class="add-button" data-type="water">+0.2 L Water</button>
+                    </div>
+
+                    <div class="card health-metric">
+                        <div class="icon-circle calories"><i class="fas fa-fire"></i></div>
+                        <h3>Calories Burned</h3>
+                        <p>0 kcal</p>
+                        <span class="goal">Activity tracking</span>
+                    </div>
+
+                    <div class="card health-metric">
+                        <div class="icon-circle heart-rate"><i class="fas fa-heartbeat"></i></div>
+                        <h3>Heart Rate</h3>
+                        <p>72 bpm</p>
+                        <span class="goal">Avg. Resting</span>
+                    </div>
+                </div>
+
+                <div class="card health-tip">
+                    <h3><i class="fas fa-lightbulb"></i> Health Tip of the Day</h3>
+                    <p id="health-tip-content">Loading tip...</p>
+                </div>
+
+                <div class="chart-placeholder card">
+                    <h3>Weekly Activity Summary</h3>
+                    <p>A placeholder for a future chart (e.g., using a library like Chart.js if this were a real app).</p>
+                    <div class="chart-img"></div>
+                </div>
+            </section>
+
+            <section id="activity" class="dashboard-section">
+                <h2>Activity Log</h2>
+                <p>Track your workouts and daily movement here.</p>
+
+                <div class="card workout-timer">
+                    <h3><i class="fas fa-stopwatch"></i> Workout Timer</h3>
+                    <div class="timer-display" id="timer-display">00:00:00</div>
+                    <div class="timer-controls">
+                        <button id="start-timer" class="control-button green"><i class="fas fa-play"></i> Start</button>
+                        <button id="pause-timer" class="control-button yellow" disabled><i class="fas fa-pause"></i> Pause</button>
+                        <button id="reset-timer" class="control-button red" disabled><i class="fas fa-redo"></i> Reset</button>
+                    </div>
+                </div>
+
+                <div class="info-box">More detailed workout history coming soon!</div>
+            </section>
+
+            <section id="nutrition" class="dashboard-section">
+                <h2>Nutrition Journal</h2>
+                <p>Log your meals, track macros, and monitor your diet.</p>
+                <div class="info-box">Coming soon: Recipe ideas and meal tracking!</div>
+            </section>
+
+            <section id="sleep" class="dashboard-section">
+                <h2>Sleep & Mood Tracker</h2>
+                <p>Monitor your sleep patterns and track your daily mood.</p>
+
+                <div class="mood-tracker-container">
+                    <form id="mood-form" class="card">
+                        <h3>How are you feeling today?</h3>
+                        <div class="form-group">
+                            <label for="mood-select">Mood:</label>
+                            <select id="mood-select" required>
+                                <option value="">Select Mood</option>
+                                <option value="Great">Great 😊</option>
+                                <option value="Good">Good 🙂</option>
+                                <option value="Okay">Okay 😐</option>
+                                <option value="Bad">Bad 😟</option>
+                                <option value="Awful">Awful 😭</option>
+                            </select>
+                        </div>
+                         <div class="form-group">
+                            <label for="mood-date-input">Date:</label>
+                            <input type="date" id="mood-date-input" required>
+                        </div>
+                        <button type="submit" class="submit-button">Log Mood</button>
+                    </form>
+
+                    <div class="card mood-history">
+                        <h3>Mood History</h3>
+                        <ul id="mood-list">
+                            </ul>
+                        <p id="no-mood-data" style="text-align: center; color: var(--light-text-color); margin-top: 10px; display: none;">No mood entries yet.</p>
+                    </div>
+                </div>
+
+                <div class="info-box" style="margin-top: 20px;">More sleep cycle analysis coming soon!</div>
+            </section>
+
+            <section id="weight" class="dashboard-section">
+                <h2>Weight Tracker</h2>
+                <p>Log your weight and track your progress over time.</p>
+                <div class="weight-tracker-container">
+                    <form id="weight-form" class="card">
+                        <h3>Add New Weight Entry</h3>
+                        <div class="form-group">
+                            <label for="weight-input">Weight (kg):</label>
+                            <input type="number" id="weight-input" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="weight-date-input">Date:</label>
+                            <input type="date" id="weight-date-input" required>
+                        </div>
+                        <button type="submit" class="submit-button">Add Weight</button>
+                    </form>
+
+                    <div class="card weight-history">
+                        <h3>Weight History</h3>
+                        <ul id="weight-list">
+                            </ul>
+                        <p id="no-weight-data" style="text-align: center; color: var(--light-text-color); margin-top: 10px; display: none;">No weight entries yet.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="settings" class="dashboard-section">
+                <h2>Settings</h2>
+                <p>Manage your profile, preferences, and app notifications.</p>
+                <div class="info-box">Customize your app experience here!</div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="app-footer">
+        <p>&copy; 2025 MyHealth App. All rights reserved.</p>
+    </footer>
+
+    <div id="toast-notification" class="toast"></div>
+
+    <script src="task5.js"></script>
+</body>
+</html>
